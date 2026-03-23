@@ -14,7 +14,7 @@ const contactSchema = z.object({
 })
 
 // Simple in-memory rate limiter: 3 submissions per IP per hour
-const ipMap = new Map<string, { count: number; resetAt: number }>()
+export const ipMap = new Map<string, { count: number; resetAt: number }>()
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now()

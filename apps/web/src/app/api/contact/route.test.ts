@@ -3,16 +3,17 @@ import { NextRequest } from 'next/server'
 
 // ─── Mocks ────────────────────────────────────────────────────────────────────
 
-const mockSend = vi.fn()
+// vi.hoisted ensures mockSend is available when vi.mock factory runs (vi.mock is hoisted)
+const { mockSend } = vi.hoisted(() => ({ mockSend: vi.fn() }))
 
 vi.mock('resend', () => ({
-  Resend: vi.fn().mockImplementation(() => ({
-    emails: { send: mockSend },
-  })),
+  Resend: class MockResend {
+    emails = { send: mockSend }
+  },
 }))
 
 // Import after mocks are set up
-import { POST } from '@/app/api/contact/route'
+import { POST, ipMap } from '@/app/api/contact/route'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -37,6 +38,7 @@ function makeRequest(body: unknown, ip = '1.2.3.4'): NextRequest {
 
 beforeEach(() => {
   mockSend.mockReset()
+  ipMap.clear()
   // Provide a Resend key so the email path is exercised
   vi.stubEnv('RESEND_API_KEY', 'test-key')
   vi.stubEnv('CONTACT_EMAIL', 'studio@cvoirstudio.com')
