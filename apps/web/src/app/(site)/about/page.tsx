@@ -74,10 +74,10 @@ export default async function AboutPage() {
             We are<br />Cvoir Studio.
           </h1>
           <p className="font-body text-base text-slate leading-relaxed max-w-[48ch]">
-            Founded at the crossroads of visual storytelling and digital engineering, Cvoir Studio was built on a simple belief: great creative work and great technical work aren't mutually exclusive — they're inseparable.
+            Founded at the crossroads of visual storytelling and digital engineering, Cvoir Studio was built on a simple belief: great creative work and great technical work aren&apos;t mutually exclusive — they&apos;re inseparable.
           </p>
           <p className="font-body text-base text-slate leading-relaxed max-w-[48ch] mt-4">
-            We are photographers, filmmakers, and engineers who refuse to choose a lane. Every project we take on, we bring the same obsessive attention to detail — whether it's the light in a portrait or the performance budget of a web application.
+            We are photographers, filmmakers, and engineers who refuse to choose a lane. Every project we take on, we bring the same obsessive attention to detail — whether it&apos;s the light in a portrait or the performance budget of a web application.
           </p>
         </div>
       </section>

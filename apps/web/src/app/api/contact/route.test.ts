@@ -58,7 +58,7 @@ describe('POST /api/contact — validation', () => {
   })
 
   it('returns 400 when service is missing', async () => {
-    const { service: _, ...rest } = validPayload
+    const { service: _service, ...rest } = validPayload
     const res = await POST(makeRequest(rest))
     expect(res.status).toBe(400)
   })
@@ -79,7 +79,7 @@ describe('POST /api/contact — validation', () => {
   })
 
   it('returns 400 when consent is missing', async () => {
-    const { consent: _, ...rest } = validPayload
+    const { consent: _consent, ...rest } = validPayload
     const res = await POST(makeRequest(rest))
     expect(res.status).toBe(400)
   })

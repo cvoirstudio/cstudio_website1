@@ -14,7 +14,6 @@ test.describe('Gallery & Lightbox', () => {
 
   test('filter tabs are visible', async ({ page }) => {
     // Category filter bar should render
-    const filterBar = page.locator('nav, [role="tablist"]').filter({ hasText: /all/i })
     // It may not have a specific role; check that there are clickable category labels
     await expect(page.getByRole('button', { name: /all/i }).first()).toBeVisible()
   })

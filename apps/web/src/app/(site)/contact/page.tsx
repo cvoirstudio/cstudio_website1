@@ -41,7 +41,7 @@ export default async function ContactPage() {
               Get in Touch
             </p>
             <h1 className="font-display text-5xl font-light text-ivory leading-tight">
-              Let's create<br />something<br />extraordinary.
+              Let&apos;s create<br />something<br />extraordinary.
             </h1>
           </div>
 
