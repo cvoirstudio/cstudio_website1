@@ -120,20 +120,21 @@ export const postBySlugQuery = groq`
 // ─── Team ─────────────────────────────────────────────────────────────────────
 
 export const teamQuery = groq`
-  *[_type == "team"] | order(order asc) {
+  *[_type == "teamMember"] | order(order asc) {
     ${cacheFields},
     name,
     role,
     bio,
-    social,
-    "photo": photo ${imageFragment}
+    instagram,
+    linkedin,
+    "photo": image ${imageFragment}
   }
 `
 
 // ─── Settings (singleton) ─────────────────────────────────────────────────────
 
 export const siteSettingsQuery = groq`
-  *[_type == "settings" && _id == "siteSettings"][0] {
+  *[_type == "siteSettings" && _id == "siteSettings"][0] {
     ${cacheFields},
     siteName,
     tagline,
