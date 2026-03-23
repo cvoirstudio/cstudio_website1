@@ -8,7 +8,7 @@ test.describe('Contact form', () => {
   // ─── Rendering ──────────────────────────────────────────────────────────────
 
   test('contact page renders the form', async ({ page }) => {
-    await expect(page.locator('form')).toBeVisible()
+    await expect(page.locator('#contact-form')).toBeVisible()
   })
 
   test('all required fields are present', async ({ page }) => {

@@ -90,32 +90,34 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-7" noValidate>
+    <form id="contact-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-7" noValidate>
       {/* Name + Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <label className="flex flex-col gap-1.5">
-          <span className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Name *</span>
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="cf-name" className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Name *</label>
           <input
             {...register('name')}
+            id="cf-name"
             type="text"
             autoComplete="name"
             className="font-body text-sm px-4 py-3 border border-border bg-transparent text-obsidian placeholder:text-slate-light focus:outline-none focus:border-brass transition-colors duration-200"
             placeholder="Your full name"
           />
           {errors.name && <span className="font-body text-xs text-red-500">{errors.name.message}</span>}
-        </label>
+        </div>
 
-        <label className="flex flex-col gap-1.5">
-          <span className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Email *</span>
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="cf-email" className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Email *</label>
           <input
             {...register('email')}
+            id="cf-email"
             type="email"
             autoComplete="email"
             className="font-body text-sm px-4 py-3 border border-border bg-transparent text-obsidian placeholder:text-slate-light focus:outline-none focus:border-brass transition-colors duration-200"
             placeholder="you@company.com"
           />
           {errors.email && <span className="font-body text-xs text-red-500">{errors.email.message}</span>}
-        </label>
+        </div>
       </div>
 
       {/* Phone */}
@@ -179,16 +181,17 @@ export default function ContactForm() {
       </div>
 
       {/* Message */}
-      <label className="flex flex-col gap-1.5">
-        <span className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Message *</span>
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="cf-message" className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Message *</label>
         <textarea
           {...register('message')}
+          id="cf-message"
           rows={5}
           className="font-body text-sm px-4 py-3 border border-border bg-transparent text-obsidian placeholder:text-slate-light focus:outline-none focus:border-brass transition-colors duration-200 resize-none"
           placeholder="Tell us about your project — the more detail, the better."
         />
         {errors.message && <span className="font-body text-xs text-red-500">{errors.message.message}</span>}
-      </label>
+      </div>
 
       {/* Consent */}
       <label className="flex items-start gap-3 cursor-pointer">
