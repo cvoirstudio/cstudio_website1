@@ -76,7 +76,7 @@ export default function ContactForm() {
         <div>
           <h3 className="font-display text-3xl font-light text-obsidian">Message received.</h3>
           <p className="font-body text-sm text-slate mt-2 max-w-[36ch]">
-            We'll be in touch within 1–2 business days. While you wait, explore our work.
+            We&apos;ll be in touch within 1–2 business days. While you wait, explore our work.
           </p>
         </div>
         <a

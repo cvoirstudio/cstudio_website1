@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { startTransition, useEffect, useState } from 'react'
 import { Menu } from 'lucide-react'
 import MobileMenu from './mobile-menu'
 
@@ -26,7 +26,7 @@ export default function Nav() {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setMenuOpen(false)
+    startTransition(() => setMenuOpen(false))
   }, [pathname])
 
   // Prevent body scroll when menu is open
