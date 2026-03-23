@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDrag } from '@use-gesture/react'
@@ -19,14 +19,41 @@ interface LightboxProps {
 export default function Lightbox({ projects, index, onClose, onPrev, onNext }: LightboxProps) {
   const isOpen = index !== null
   const project = index !== null ? projects[index] : null
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  // Keyboard navigation
+  // Focus close button when dialog opens
+  useEffect(() => {
+    if (isOpen) closeButtonRef.current?.focus()
+  }, [isOpen])
+
+  // Keyboard navigation + focus trap
   useEffect(() => {
     if (!isOpen) return
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowLeft') onPrev()
-      if (e.key === 'ArrowRight') onNext()
+      if (e.key === 'Escape') { onClose(); return }
+      if (e.key === 'ArrowLeft') { onPrev(); return }
+      if (e.key === 'ArrowRight') { onNext(); return }
+      if (e.key === 'Tab') {
+        const dialog = document.querySelector('[role="dialog"]')
+        if (!dialog) return
+        const focusable = Array.from(
+          dialog.querySelectorAll<HTMLElement>('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+        )
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey) {
+          if (!dialog.contains(document.activeElement) || document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+          }
+        } else {
+          if (!dialog.contains(document.activeElement) || document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+          }
+        }
+      }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
@@ -74,8 +101,9 @@ export default function Lightbox({ projects, index, onClose, onPrev, onNext }: L
 
           {/* Close */}
           <button
+            ref={closeButtonRef}
             onClick={onClose}
-            className="absolute top-5 right-5 z-10 p-2 text-ivory hover:text-brass transition-colors duration-200"
+            className="absolute top-5 right-5 z-20 p-2 text-ivory hover:text-brass transition-colors duration-200"
             aria-label="Close lightbox"
           >
             <X size={24} strokeWidth={1.5} />
@@ -84,7 +112,7 @@ export default function Lightbox({ projects, index, onClose, onPrev, onNext }: L
           {/* Prev */}
           <button
             onClick={onPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 text-ivory hover:text-brass transition-colors duration-200 disabled:opacity-30"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 text-ivory hover:text-brass transition-colors duration-200 disabled:opacity-30"
             aria-label="Previous project"
           >
             <ChevronLeft size={32} strokeWidth={1.5} />
@@ -93,7 +121,7 @@ export default function Lightbox({ projects, index, onClose, onPrev, onNext }: L
           {/* Next */}
           <button
             onClick={onNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 text-ivory hover:text-brass transition-colors duration-200"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 text-ivory hover:text-brass transition-colors duration-200"
             aria-label="Next project"
           >
             <ChevronRight size={32} strokeWidth={1.5} />

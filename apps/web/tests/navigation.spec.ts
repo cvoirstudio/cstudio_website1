@@ -48,22 +48,23 @@ test.describe('Navigation', () => {
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto('/')
 
-    const menuButton = page.getByRole('button', { name: /menu|open/i })
+    const menuButton = page.getByRole('button', { name: 'Open navigation menu' })
     await menuButton.click()
 
     // Menu items should be visible
-    await expect(page.getByRole('link', { name: 'Photography' })).toBeVisible()
+    const mobileMenu = page.locator('[data-testid="mobile-menu"]')
+    await expect(mobileMenu.getByRole('link', { name: 'Photography' })).toBeVisible()
 
     // Close the menu
-    const closeButton = page.getByRole('button', { name: /close/i })
+    const closeButton = mobileMenu.getByRole('button', { name: /close/i })
     await closeButton.click()
 
     // Menu should be dismissed
-    await expect(page.getByRole('link', { name: 'Photography' })).not.toBeVisible()
+    await expect(mobileMenu).not.toBeVisible()
   })
 
   test('footer links do not 404', async ({ page }) => {
-    const footer = page.locator('footer')
+    const footer = page.getByRole('contentinfo')
     await expect(footer).toBeVisible()
 
     const footerLinks = footer.getByRole('link')
@@ -84,8 +85,8 @@ test.describe('Navigation', () => {
     await page.evaluate(() => window.scrollTo(0, 200))
     await page.waitForTimeout(100)
 
-    const nav = page.locator('nav')
-    const bgClass = await nav.getAttribute('class')
+    const header = page.locator('header')
+    const bgClass = await header.getAttribute('class')
     // After scroll, should have backdrop/bg class applied
     expect(bgClass).toMatch(/bg-|backdrop/)
   })

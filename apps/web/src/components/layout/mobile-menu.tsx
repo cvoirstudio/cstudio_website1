@@ -43,6 +43,7 @@ export default function MobileMenu({ open, onClose, pathname }: MobileMenuProps)
     <AnimatePresence>
       {open && (
         <motion.div
+          data-testid="mobile-menu"
           className="fixed inset-0 z-[60] bg-obsidian flex flex-col overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

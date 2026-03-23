@@ -14,8 +14,8 @@ test.describe('Gallery & Lightbox', () => {
 
   test('filter tabs are visible', async ({ page }) => {
     // Category filter bar should render
-    // It may not have a specific role; check that there are clickable category labels
-    await expect(page.getByRole('button', { name: /all/i }).first()).toBeVisible()
+    // Filters are rendered as <a> links, not buttons
+    await expect(page.getByRole('link', { name: 'All' }).first()).toBeVisible()
   })
 
   // ─── Lightbox — open ─────────────────────────────────────────────────────────
@@ -45,7 +45,9 @@ test.describe('Gallery & Lightbox', () => {
 
     if (cardLabel) {
       const projectTitle = cardLabel.replace(/^View\s+/i, '')
-      await expect(page.getByText(projectTitle)).toBeVisible({ timeout: 3000 })
+      await expect(
+        page.locator('[role="dialog"]').getByRole('heading', { name: projectTitle })
+      ).toBeVisible({ timeout: 3000 })
     }
   })
 
@@ -111,7 +113,7 @@ test.describe('Gallery & Lightbox', () => {
       timeout: 3000,
     })
 
-    const closeBtn = page.getByRole('button', { name: /close/i })
+    const closeBtn = page.locator('[role="dialog"]').getByRole('button', { name: /close/i })
     await closeBtn.click()
 
     await expect(page.locator('[role="dialog"], [data-lightbox]').first()).not.toBeVisible({
@@ -122,7 +124,7 @@ test.describe('Gallery & Lightbox', () => {
   // ─── Category filters ────────────────────────────────────────────────────────
 
   test('clicking a category filter updates the URL', async ({ page }) => {
-    const portraitFilter = page.getByRole('button', { name: /portrait/i }).first()
+    const portraitFilter = page.locator('a[href*="category=portrait"]')
     const filterCount = await portraitFilter.count()
     test.skip(filterCount === 0, 'Portrait filter not found')
 

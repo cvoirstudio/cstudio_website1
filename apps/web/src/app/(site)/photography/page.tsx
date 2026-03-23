@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getAllProjects, getSiteSettings } from '@/lib/sanity/queries'
 import { imageUrl } from '@/lib/sanity/image'
 import GalleryMasonry from '@/components/portfolio/gallery-masonry'
@@ -112,11 +113,12 @@ export default async function PhotographyPage({ searchParams }: Props) {
                 <div key={project._id} className="relative group">
                   <div className="relative aspect-video bg-obsidian/50 overflow-hidden">
                     {project.coverImage?.asset?.url && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={project.coverImage.asset.url}
-                        alt={project.coverImage.alt}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt={project.coverImage.alt ?? project.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     )}
                     {/* Play button overlay */}

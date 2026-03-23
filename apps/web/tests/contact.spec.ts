@@ -49,11 +49,11 @@ test.describe('Contact form', () => {
     // Fill all other fields correctly but skip consent
     await page.getByLabel(/name/i).fill('Jane Doe')
     await page.getByLabel(/email/i).fill('jane@example.com')
-    await page.locator('input[type="radio"][value="photography"]').check()
+    await page.locator('input[type="radio"][value="photography"]').check({ force: true })
     await page.getByLabel(/message/i).fill('This is a valid test message with enough characters to pass.')
     await page.getByRole('button', { name: /send message/i }).click()
 
-    await expect(page.getByText(/agree/i)).toBeVisible()
+    await expect(page.getByText(/you must agree/i)).toBeVisible()
   })
 
   // ─── Service radio cards ──────────────────────────────────────────────────
@@ -78,16 +78,16 @@ test.describe('Contact form', () => {
 
   test('submit button shows loading state during submission', async ({ page }) => {
     // Intercept the API call to add artificial delay
-    await page.route('/api/contact', async (route) => {
+    await page.route('**/api/contact', async (route) => {
       await new Promise((r) => setTimeout(r, 500))
       await route.fulfill({ status: 200, body: JSON.stringify({ success: true }) })
     })
 
     await page.getByLabel(/name/i).fill('Jane Doe')
     await page.getByLabel(/email/i).fill('jane@example.com')
-    await page.locator('input[type="radio"][value="photography"]').check()
+    await page.locator('input[type="radio"][value="photography"]').check({ force: true })
     await page.getByLabel(/message/i).fill('This is a valid test message with enough characters to pass.')
-    await page.locator('input[type="checkbox"]').check()
+    await page.locator('input[type="checkbox"]').check({ force: true })
 
     await page.getByRole('button', { name: /send message/i }).click()
 
@@ -96,15 +96,15 @@ test.describe('Contact form', () => {
 
   test('shows success state after valid submission', async ({ page }) => {
     // Mock a successful API response
-    await page.route('/api/contact', (route) =>
+    await page.route('**/api/contact', (route) =>
       route.fulfill({ status: 200, body: JSON.stringify({ success: true }) })
     )
 
     await page.getByLabel(/name/i).fill('Jane Doe')
     await page.getByLabel(/email/i).fill('jane@example.com')
-    await page.locator('input[type="radio"][value="photography"]').check()
+    await page.locator('input[type="radio"][value="photography"]').check({ force: true })
     await page.getByLabel(/message/i).fill('This is a valid test message with enough characters to pass.')
-    await page.locator('input[type="checkbox"]').check()
+    await page.locator('input[type="checkbox"]').check({ force: true })
 
     await page.getByRole('button', { name: /send message/i }).click()
 
@@ -112,7 +112,7 @@ test.describe('Contact form', () => {
   })
 
   test('shows server error when API returns failure', async ({ page }) => {
-    await page.route('/api/contact', (route) =>
+    await page.route('**/api/contact', (route) =>
       route.fulfill({
         status: 500,
         body: JSON.stringify({ error: 'Internal server error.' }),
@@ -121,9 +121,9 @@ test.describe('Contact form', () => {
 
     await page.getByLabel(/name/i).fill('Jane Doe')
     await page.getByLabel(/email/i).fill('jane@example.com')
-    await page.locator('input[type="radio"][value="photography"]').check()
+    await page.locator('input[type="radio"][value="photography"]').check({ force: true })
     await page.getByLabel(/message/i).fill('This is a valid test message with enough characters to pass.')
-    await page.locator('input[type="checkbox"]').check()
+    await page.locator('input[type="checkbox"]').check({ force: true })
 
     await page.getByRole('button', { name: /send message/i }).click()
 
@@ -131,7 +131,7 @@ test.describe('Contact form', () => {
   })
 
   test('shows rate limit error on 429 response', async ({ page }) => {
-    await page.route('/api/contact', (route) =>
+    await page.route('**/api/contact', (route) =>
       route.fulfill({
         status: 429,
         body: JSON.stringify({ error: 'Too many requests. Please try again later.' }),
@@ -140,9 +140,9 @@ test.describe('Contact form', () => {
 
     await page.getByLabel(/name/i).fill('Jane Doe')
     await page.getByLabel(/email/i).fill('jane@example.com')
-    await page.locator('input[type="radio"][value="photography"]').check()
+    await page.locator('input[type="radio"][value="photography"]').check({ force: true })
     await page.getByLabel(/message/i).fill('This is a valid test message with enough characters to pass.')
-    await page.locator('input[type="checkbox"]').check()
+    await page.locator('input[type="checkbox"]').check({ force: true })
 
     await page.getByRole('button', { name: /send message/i }).click()
 
