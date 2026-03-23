@@ -13,10 +13,7 @@ const contactSchema = z.object({
   service: z.enum(['photography', 'videography', 'web-development', 'other'], {
     error: () => 'Please select a service',
   }),
-  budget: z.preprocess(
-    (v) => (v === '' ? undefined : v),
-    z.enum(['<5k', '5k-15k', '15k-50k', '50k+']).optional()
-  ),
+  budget: z.enum(['<5k', '5k-15k', '15k-50k', '50k+']).optional(),
   projectDate: z.string().optional(),
   message: z.string().min(20, 'Please tell us a bit more (min 20 characters)').max(2000),
   consent: z.literal(true, { error: () => 'You must agree to proceed' }),
@@ -163,7 +160,7 @@ export default function ContactForm() {
         <label className="flex flex-col gap-1.5">
           <span className="font-body text-[10px] tracking-[0.2em] text-obsidian uppercase">Budget Range</span>
           <select
-            {...register('budget')}
+            {...register('budget', { setValueAs: (v) => v === '' ? undefined : v })}
             className="font-body text-sm px-4 py-3 border border-border bg-transparent text-obsidian focus:outline-none focus:border-brass transition-colors duration-200 appearance-none"
           >
             <option value="">Select a range</option>
