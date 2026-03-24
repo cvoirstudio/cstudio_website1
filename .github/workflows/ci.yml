@@ -76,8 +76,9 @@ jobs:
       - name: Deploy (production)
         id: deploy
         run: |
-          url=$(vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
-          echo "url=$url" >> "$GITHUB_OUTPUT"
+          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+          # Use the production alias URL; deployment-specific URLs return 401 due to Vercel protection
+          echo "url=https://cstudio-website1.vercel.app" >> "$GITHUB_OUTPUT"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
