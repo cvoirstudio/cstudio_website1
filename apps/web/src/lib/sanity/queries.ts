@@ -208,5 +208,5 @@ export async function getAllPostSlugs(): Promise<{ slug: string; _updatedAt: str
 }
 
 export async function getSiteSettings() {
-  return sanityClient.fetch(siteSettingsQuery, {}, { next: { revalidate: 3600 } })
+  return sanityClient.fetch(siteSettingsQuery, {}, { next: { tags: ['settings'], revalidate: 3600 } })
 }

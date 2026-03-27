@@ -6,7 +6,7 @@ const typeToTags: Record<string, string[]> = {
   project: ['project'],
   post: ['post'],
   team: ['team'],
-  settings: ['settings'],
+  siteSettings: ['settings'],
   category: ['post'], // category changes affect post listings
 }
 
