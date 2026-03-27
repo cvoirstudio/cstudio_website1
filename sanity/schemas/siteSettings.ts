@@ -35,6 +35,21 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: 'heroImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      description: 'Shown as the hero background when no video is set.',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt text',
+          description: 'Describe the image for screen readers.',
+        },
+      ],
+    }),
+    defineField({
       name: 'seo',
       title: 'Default SEO',
       type: 'object',

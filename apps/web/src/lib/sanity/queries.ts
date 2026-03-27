@@ -144,6 +144,7 @@ export const siteSettingsQuery = groq`
     socialLinks,
     heroVideo,
     showreelUrl,
+    heroImage { asset->, alt },
     seo ${seoFragment}
   }
 `

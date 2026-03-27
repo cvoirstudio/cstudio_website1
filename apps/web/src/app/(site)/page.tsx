@@ -41,7 +41,11 @@ export default async function HomePage() {
   return (
     <>
       {/* A — Hero */}
-      <Hero videoUrl={settings?.showreelUrl} />
+      <Hero
+        videoUrl={settings?.showreelUrl}
+        imageUrl={imageUrl(settings?.heroImage)}
+        imageAlt={settings?.heroImage?.alt ?? ''}
+      />
 
       {/* B — Services teaser */}
       <ServicesGrid />

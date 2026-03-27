@@ -1,12 +1,28 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface HeroProps {
   videoUrl?: string
+  imageUrl?: string
+  imageAlt?: string
 }
 
-export default function Hero({ videoUrl }: HeroProps) {
+export default function Hero({ videoUrl, imageUrl, imageAlt = '' }: HeroProps) {
   return (
     <section className="relative min-h-dvh flex flex-col items-center justify-center dark-section grain overflow-hidden">
+      {/* Background image */}
+      {imageUrl && !videoUrl && (
+        <Image
+          src={imageUrl}
+          alt={imageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          aria-hidden={!imageAlt}
+        />
+      )}
+
       {/* Background video */}
       {videoUrl && (
         <video

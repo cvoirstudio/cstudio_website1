@@ -120,6 +120,7 @@ export interface SiteSettings {
   }
   heroVideo?: string
   showreelUrl?: string
+  heroImage?: SanityImage & { alt?: string }
   seo?: {
     metaDescription?: string
     ogImage?: SanityImage
