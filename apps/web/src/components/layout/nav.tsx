@@ -41,9 +41,10 @@ export default function Nav() {
         className={`
           fixed top-0 inset-x-0 z-50
           transition-all duration-500
+          backdrop-blur-md bg-obsidian/60
           ${scrolled
-            ? 'backdrop-blur-md bg-obsidian/90 border-b border-white/10 shadow-lg'
-            : 'bg-transparent'}
+            ? 'border-b border-ivory/10 shadow-lg'
+            : 'border-b border-transparent'}
         `}
       >
         <nav className="container-px flex items-center justify-between h-16 md:h-20">
@@ -56,7 +57,7 @@ export default function Nav() {
             <span className="font-display text-[1.6rem] font-light tracking-[0.35em] text-ivory uppercase group-hover:text-brass transition-colors duration-200">
               CVOIR
             </span>
-            <span className="font-body text-[9px] tracking-[0.3em] text-slate-light uppercase mt-0.5 group-hover:text-brass/70 transition-colors duration-200">
+            <span className="font-body text-[9px] tracking-[0.3em] text-slate-light uppercase mt-0.5 group-hover:text-brass/70 transition-colors duration-200 self-end pr-[5%]">
               STUDIO
             </span>
           </Link>
@@ -93,7 +94,7 @@ export default function Nav() {
             <Link
               href="/contact"
               className={`
-                font-body text-sm tracking-wide px-5 py-2
+                font-body text-sm tracking-wide px-5 py-2 rounded-full
                 border border-brass text-brass
                 hover:bg-brass hover:text-obsidian
                 transition-all duration-200

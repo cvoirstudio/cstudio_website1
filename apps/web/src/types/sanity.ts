@@ -103,6 +103,16 @@ export interface TeamMember {
   order?: number
 }
 
+export interface PhotographyHeroSlide {
+  image: SanityImage
+  project: {
+    _id: string
+    title: string
+    slug: { current: string }
+    category: string
+  }
+}
+
 export interface SiteSettings {
   _id: string
   _type: 'settings'
@@ -121,6 +131,7 @@ export interface SiteSettings {
   heroVideo?: string
   showreelUrl?: string
   heroImage?: SanityImage & { alt?: string }
+  photographyHero?: PhotographyHeroSlide[]
   seo?: {
     metaDescription?: string
     ogImage?: SanityImage

@@ -26,7 +26,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
   const list = items && items.length > 0 ? items : fallback
 
   return (
-    <section className="section-py dark-section grain overflow-hidden">
+    <section className="section-py bg-ivory overflow-hidden">
       <div className="container-px">
         {/* Section label */}
         <p className="font-body text-[10px] tracking-[0.3em] text-brass uppercase mb-12">
@@ -45,15 +45,15 @@ export default function Testimonials({ items }: TestimonialsProps) {
                 &ldquo;
               </span>
 
-              <blockquote className="font-display text-xl md:text-2xl font-light italic text-ivory leading-relaxed -mt-8">
+              <blockquote className="font-display text-xl md:text-2xl font-light italic text-obsidian leading-relaxed -mt-8">
                 {t.quote}
               </blockquote>
 
-              <footer className="flex flex-col gap-0.5 border-t border-white/10 pt-4">
-                <cite className="font-body text-sm text-ivory not-italic font-medium">
+              <footer className="flex flex-col gap-0.5 border-t border-obsidian/10 pt-4">
+                <cite className="font-body text-sm text-obsidian not-italic font-medium">
                   {t.author}
                 </cite>
-                <span className="font-body text-xs text-slate-light">{t.role}</span>
+                <span className="font-body text-xs text-slate">{t.role}</span>
               </footer>
             </div>
           ))}

@@ -22,11 +22,11 @@
   --color-accent: var(--color-brass);
 
   /* Typography */
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 
   /* Fluid spacing */
-  --section-py: clamp(4rem, 10vw, 8rem);
+  --section-py: clamp(2rem, 5vw, 4rem);
   --container-px: clamp(1.5rem, 5vw, 5rem);
 
   /* Animation */

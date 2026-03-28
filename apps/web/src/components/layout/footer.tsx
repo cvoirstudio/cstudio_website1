@@ -81,7 +81,7 @@ export default function Footer() {
               Vision, Captured. Crafted.
             </p>
 
-            <p className="font-body text-xs leading-relaxed text-slate-/60 max-w-[28ch]">
+            <p className="font-body text-xs leading-relaxed text-slate/60 max-w-[28ch]">
               Photography · Videography · Web Development — built with intention, delivered with excellence.
             </p>
           </div>

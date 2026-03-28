@@ -22,9 +22,48 @@ export const settings = defineType({
       title: 'Default SEO',
       type: 'object',
       fields: [
+        defineField({ name: 'metaTitle', title: 'Default Meta Title', type: 'string' }),
         defineField({ name: 'metaDescription', title: 'Default Meta Description', type: 'text', validation: (Rule) => Rule.max(160) }),
         defineField({ name: 'ogImage', title: 'Default OG Image', type: 'image' }),
       ],
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'photographyHero',
+      title: 'Photography Page — Hero Images',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'heroSlide',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+              ],
+            }),
+            defineField({
+              name: 'project',
+              title: 'Linked Project',
+              type: 'reference',
+              to: [{ type: 'project' }],
+            }),
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.max(3),
     }),
     defineField({
       name: 'contactEmail',

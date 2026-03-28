@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function CtaBand() {
   return (
-    <section className="relative py-24 overflow-hidden" style={{ background: 'var(--color-brass)' }}>
+    <section className="relative py-14 overflow-hidden" style={{ background: 'var(--color-brass)' }}>
       {/* Subtle grain */}
       <div className="absolute inset-0 grain" aria-hidden />
 
@@ -12,7 +12,7 @@ export default function CtaBand() {
         </h2>
         <Link
           href="/contact"
-          className="font-body text-sm tracking-wide px-10 py-4 bg-obsidian text-ivory hover:bg-obsidian/80 transition-colors duration-200"
+          className="font-body text-sm tracking-wide px-10 py-4 bg-obsidian text-ivory rounded-full hover:bg-obsidian/80 transition-colors duration-200"
         >
           Start a Project
         </Link>

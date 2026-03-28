@@ -26,7 +26,7 @@ export default function PostCard({ post, featured, priority }: PostCardProps) {
       className="group flex flex-col focus-visible:outline-2 focus-visible:outline-brass"
     >
       {/* Cover image */}
-      <div className="relative overflow-hidden bg-obsidian/10">
+      <div className="relative overflow-hidden bg-obsidian/10 rounded-2xl">
         {src ? (
           <Image
             src={src}

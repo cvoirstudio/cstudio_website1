@@ -9,7 +9,7 @@ interface HeroProps {
 
 export default function Hero({ videoUrl, imageUrl, imageAlt = '' }: HeroProps) {
   return (
-    <section className="relative min-h-dvh flex flex-col items-center justify-center dark-section grain overflow-hidden">
+    <section className="relative dark-section grain overflow-hidden">
       {/* Background image */}
       {imageUrl && !videoUrl && (
         <Image
@@ -43,15 +43,15 @@ export default function Hero({ videoUrl, imageUrl, imageAlt = '' }: HeroProps) {
         aria-hidden
       />
 
-      {/* Content */}
-      <div className="relative z-10 container-px text-center flex flex-col items-center gap-8 py-32">
+      {/* Content — min-h handles 70vh, padding clears the fixed nav */}
+      <div className="relative z-10 h-[85vh] flex flex-col items-start justify-center container-px gap-6 pt-24 pb-12">
         {/* Label */}
         <span className="font-body text-[10px] tracking-[0.35em] text-brass uppercase">
           Cvoir Studio
         </span>
 
         {/* Heading */}
-        <h1 className="font-display font-bold italic text-ivory text-balance leading-[0.9]" style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)' }}>
+        <h1 className="font-display font-bold italic text-ivory text-balance leading-[0.9]" style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}>
           Vision,
           <br />
           Captured.
@@ -67,7 +67,7 @@ export default function Hero({ videoUrl, imageUrl, imageAlt = '' }: HeroProps) {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap gap-4 justify-center mt-2">
+        <div className="flex flex-wrap gap-4">
           <Link
             href="/photography"
             className="font-body text-sm tracking-wide px-8 py-3.5 bg-brass text-obsidian hover:bg-brass-light transition-colors duration-200"
@@ -81,12 +81,6 @@ export default function Hero({ videoUrl, imageUrl, imageAlt = '' }: HeroProps) {
             Get in Touch
           </Link>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" aria-hidden>
-        <span className="font-body text-[9px] tracking-[0.3em] text-slate-light uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-brass to-transparent animate-pulse" />
       </div>
     </section>
   )

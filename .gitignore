@@ -15,3 +15,6 @@ test-results/
 
 # pnpm
 pnpm-debug.log*
+
+# Internal docs
+docs/

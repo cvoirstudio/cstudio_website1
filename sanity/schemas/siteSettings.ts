@@ -50,6 +50,49 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: 'photographyHero',
+      title: 'Photography Page — Hero Images',
+      description: 'Three featured images for the photography hero section (displayed at 50%–25%–25% width). Each links to a project.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'heroSlide',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alt text',
+                  description: 'Describe the image for screen readers.',
+                },
+              ],
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'project',
+              title: 'Linked Project',
+              type: 'reference',
+              to: [{ type: 'project' }],
+              validation: (R) => R.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'project.title',
+              media: 'image',
+            },
+          },
+        },
+      ],
+      validation: (R) => R.max(3),
+    }),
+    defineField({
       name: 'seo',
       title: 'Default SEO',
       type: 'object',

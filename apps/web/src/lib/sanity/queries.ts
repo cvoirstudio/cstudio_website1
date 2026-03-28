@@ -145,6 +145,10 @@ export const siteSettingsQuery = groq`
     heroVideo,
     showreelUrl,
     heroImage { asset->, alt },
+    "photographyHero": photographyHero[] {
+      image ${imageFragment},
+      "project": project->{ _id, title, slug, category }
+    },
     seo ${seoFragment}
   }
 `

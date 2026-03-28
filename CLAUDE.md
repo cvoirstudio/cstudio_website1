@@ -50,7 +50,9 @@ cvoir-studio/
 
 ## Design system
 - **Palette**: Obsidian `#0A0A0A` · Ivory `#F5F0E8` · Brass `#B8922A` · Slate `#6B7280`
-- **Fonts**: `Cormorant Garamond` (display/headings) · `DM Sans` (body/UI)
+- **Fonts**: `Plus Jakarta Sans` (display/headings) · `DM Sans` (body/UI)
+- **Navigation**: always translucent (`backdrop-blur-md bg-obsidian/60`), Obsidian/Ivory/Slate palette only
+- **Hero**: 70vh height (not full viewport)
 - **Motion**: page enter = 600ms ease-out fade+slide; hover = 200ms; no motion
   when `prefers-reduced-motion: reduce`
 - **Grid**: 12-column, 80px gutters on desktop, 24px on mobile

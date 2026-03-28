@@ -59,7 +59,7 @@ export default async function HomePage() {
       <section className="section-py container-px bg-ivory">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: editorial image placeholder */}
-          <div className="relative aspect-[3/4] bg-obsidian/5 overflow-hidden">
+          <div className="relative aspect-[3/4] bg-obsidian/5 overflow-hidden rounded-2xl">
             <div className="absolute inset-0 flex items-center justify-center text-slate-light font-body text-sm">
               Team editorial image
             </div>
